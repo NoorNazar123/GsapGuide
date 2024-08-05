@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        font-family: Arial, sans-serif;
+        overflow-x: hidden;
+      }
+
+      .full-screen {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #div1 {
+        background-color: #ff9999; /* Light red */
+      }
+
+      #div2 {
+        background-color: #030303; /* Light blue */
+      }
+      #div2 h1 {
+        color: rgb(106, 106, 106);
+        font-size: 28vw;
+        white-space: nowrap;
+        margin-left: 190%;
+        font-weight: 600;
+      }
+
+      #div3 {
+        background-color: #99ff99; /* Light green */
+      }
+
+      .center-box {
+        width: 400px;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border: 2px solid black;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div1" class="full-screen">
+      <div class="center-box">Box 1</div>
+    </div>
+    <div id="div2" class="full-screen">
+      <h1>Experience Desinger</h1>
+    </div>
+    <div id="div3" class="full-screen">
+      <div class="center-box">Box 3</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+    <script>
+      gsap.to("#div2 h1", {
+        transform: "translateX(-70%)",
+        scrollTrigger: {
+          trigger: "#div2 ",
+          scroller: "body",
+          markers: true,
+          start: "top 0%",
+          end: "top 150%",
+          scrub: 5,
+          pin: true,
+        },
+      });
+    </script>
+  </body>
+</html>
