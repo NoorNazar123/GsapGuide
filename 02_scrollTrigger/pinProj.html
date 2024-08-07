@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <title>Document</title>
     <style>
       * {
@@ -27,7 +31,7 @@
       }
 
       #div1 {
-        background-color: #ff9999; /* Light red */
+        background-color: #030303; /* Light red */
       }
 
       #div2 {
@@ -35,9 +39,9 @@
       }
       #div2 h1 {
         color: rgb(106, 106, 106);
-        font-size: 28vw;
+        font-size: 24vw;
         white-space: nowrap;
-        margin-left: 190%;
+        margin-left: 150%;
         font-weight: 600;
       }
 
@@ -55,30 +59,276 @@
         border: 2px solid black;
         text-align: center;
       }
+      .cursor {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.686
+        ); /* Change from red to green */
+        position: fixed;
+        background-image: url(https://cdn.pixabay.com/photo/2014/08/25/09/26/monster-426995_640.jpg);
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        color: #fff;
+        padding: 10px;
+        z-index: 999;
+      }
+      .cursor h1 {
+        font-size: 5px;
+        display: none;
+        opacity: 0; 
+      }
+      .navbar {
+        width: 100%;
+        height: 70px;
+        background-color: #030303;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        padding: 30px 50px;
+        display: block;
+      }
+      .navbar i {
+        display: none;
+      }
+      nav { 
+        display: flex;
+        gap: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          position: relative;
+        }
+        nav {
+          position: absolute;
+          width: 100%;
+          height: 50vh;
+          top: 0;
+          left: 100%;
+          background-color: rgba(0, 0, 0, 0.358);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          backdrop-filter: blur(50px);
+        }
+        .navbar i {
+          display: block;
+          font-size: 30px;
+        }
+      }
     </style>
   </head>
   <body>
-    <div id="div1" class="full-screen">
-      <div class="center-box">Box 1</div>
-    </div>
-    <div id="div2" class="full-screen">
-      <h1>Experience Desinger</h1>
-    </div>
-    <div id="div3" class="full-screen">
-      <div class="center-box">Box 3</div>
+    <div class="main">
+      <div class="cursor">
+        <h1>View more</h1>
+      </div>
+      <div class="navbar">
+        <h1>Hammad</h1>
+        <nav>
+          <h2>home</h2>
+          <h2>about</h2>
+          <h2>service</h2>
+          <h2>contact us</h2>
+          <h2><i class="ri-close-line close"></i></h2>
+        </nav>
+        <i class="ri-menu-5-line open"></i>
+      </div>
+      <div id="div1" class="full-screen">
+        <div>
+          <svg id="movediv" width="1100" height="300">
+            <path
+              d="M 10 150 Q 550 150 1090 150"
+              stroke="white"
+              fill="transparent"
+            />
+          </svg>
+        </div>
+      </div>
+      <div id="div2" class="full-screen">
+        <h1>Expert Designer</h1>
+      </div>
+      <div id="div3" class="full-screen">
+        <div class="center-box">
+          <a target="_blank" href="https://wa.me/923178813001">
+            <img
+              class="img"
+              src="https://img.freepik.com/free-psd/whatsapp-icon-isolated-3d-render-illustration_47987-9785.jpg"
+              alt="what's up"
+              width="200"
+              height="200"
+            />
+            <div class="container" style="margin: 20px 0px"></div>
+          </a>
+          <h1>FormSubmit Demo</h1>
+          <form
+            target="_blank"
+            action="https://formsubmit.co/noor123.uok@gmail.com"
+            method="POST"
+          >
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col">
+                  <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    placeholder="Full Name"
+                    required
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Email Address"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea
+                placeholder="Your Message"
+                class="form-control"
+                name="message"
+                rows="10"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-lg btn-dark btn-block">
+              Submit Form
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
     <script>
+      let main = document.querySelector(".main");
+      let cursor = document.querySelector(".cursor");
+      let img = document.querySelector(".img");
+      let burger = document.querySelector(".open");
+      let close = document.querySelector(".close");
+      let nav = document.querySelector("nav");
+
+      let openNav = gsap.timeline({ paused: true })
+        .to(nav, {
+          left: "0%",
+          duration: 0.5,
+          opacity: 1,
+          ease: "power2.out"
+        })
+        .from(nav.querySelectorAll("h2"), {
+          x: 50,
+          duration: 1,
+          opacity: 0,
+          ease: "power2.out",
+          stagger: 0.2
+        });
+
+      burger.addEventListener("click", () => {
+        openNav.restart();
+      });
+ 
+      close.addEventListener("click", () => {
+        gsap.to(nav, {
+          left: "100%",
+          duration: 0.5,
+          opacity: 0,
+          ease: "power2.out"
+        });
+      });
+
+      main.addEventListener("mousemove", (dets) => {
+        gsap.to(cursor, {
+          x: dets.clientX,
+          y: dets.clientY,
+          duration: 1,
+          ease: "power3.out",
+        });
+      });
+
+      img.addEventListener("mouseenter", () => {
+        gsap.to(cursor, {
+          width: 60,
+          height: 60,
+          duration: 0.5,
+          opacity: 1,
+        });
+      });
+
+      img.addEventListener("mouseleave", () => {
+        gsap.to(cursor, {
+          width: 30,
+          height: 30,
+          duration: 0.5,
+          opacity: 1,
+        });
+      });
+
+      img.addEventListener("mouseenter", () => {
+        gsap.to(".cursor h1", {
+          display: "block",
+          fontSize: 15,
+          duration: 0.5,
+          opacity: 1,
+        });
+      });
+
+      img.addEventListener("mouseleave", () => {
+        gsap.to(".cursor h1", {
+          display: "none",
+          fontSize: 5,
+          duration: 0.5,
+          opacity: 1,
+        });
+      });
+
+      let intailPath = "M 10 150 Q 550 150 1090 150";
+      let finalPath = "M 10 150 Q 550 150 1090 150";
+      let div1 = document.getElementById("movediv");
+
+      div1.addEventListener("mousemove", (dets) => {
+        let rect = div1.getBoundingClientRect();
+        let x = dets.clientX - rect.left;
+        let y = dets.clientY - rect.top;
+
+        intailPath = `M 10 150 Q ${x} ${y} 1090 150`;
+        gsap.to("svg path", {
+          attr: { d: intailPath },
+          duration: 0.5,
+          ease: "power3.out",
+        });
+      });
+
+      div1.addEventListener("mouseleave", () => {
+        gsap.to("svg path", {
+          attr: { d: finalPath },
+          duration: 2,
+          ease: "elastic.out(1.2,0.1)",
+        });
+      });
+
       gsap.to("#div2 h1", {
-        transform: "translateX(-70%)",
+        transform: "translateX(-65%)",
         scrollTrigger: {
           trigger: "#div2 ",
           scroller: "body",
           markers: true,
           start: "top 0%",
-          end: "top 150%",
+          end: "top 100%",
           scrub: 5,
           pin: true,
         },
